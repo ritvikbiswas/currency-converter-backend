@@ -67,7 +67,6 @@ const convert = async (date, amount, from) => {
     catch(error){
         throw new Error(error);
     }
-    console.log("Adding this random change...");
 }
 
 app.listen(3000, () => console.log("Server is listening on port 3000"));
