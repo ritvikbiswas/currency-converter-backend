@@ -14,6 +14,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/fxapi/:date", async (req, res) => {
+    console.log("Get Rates!");
     //console.log(req.params.date);
     //console.log(req.query.from);
     const date = req.params.date;
@@ -28,6 +29,7 @@ app.get("/fxapi/:date", async (req, res) => {
 });
 
 app.get("/fxapi/convert/:date", async (req, res) => {
+    console.log("Convert!");
     const date = req.params.date;
     const amount = req.query.amount;
     const from = req.query.from;
@@ -40,6 +42,14 @@ app.get("/fxapi/convert/:date", async (req, res) => {
         //console.log(error);
         res.status(400).send({message: "Invalid input. Please check"});
     }
+});
+
+app.get("/fxapi/average/:start", (req, res) => {
+    //const startDate = new Date(req.query.start);
+    //const endDate = new Date(req.query.end);
+    //console.log(startDate);
+    //console.log(endDate);
+    res.send("Average");
 });
 
 /**
