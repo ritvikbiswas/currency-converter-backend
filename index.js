@@ -2,6 +2,8 @@ const express = require("express");
 const axios = require("axios");
 const cors = require("cors");
 const qs = require("qs");
+const db = require("./db");
+
 const app = express();
 
 app.use(
@@ -69,6 +71,22 @@ app.get("/fxapi/average/:from", async (req, res) => {
         res.status(400).send({
             message: "Invalid input. Please check your URL and try again",
         });
+    }
+});
+
+app.get("/fxapi/upload", async (req, res) => {
+    console.log("Upload!");
+    const startDate = new Date(req.query.startDate);
+    const endDate = new Date(req.query.endDate);
+    const from = new Date(req.query.from);
+
+    try{
+        const rates = await upload(startDate, endDate, from);
+        res.send(rates);
+    }
+    catch(err){
+        console.log(err);
+        res.status(400).send({ message: "Invalid input. Please check your URL and try again"});
     }
 });
 
