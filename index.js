@@ -97,7 +97,9 @@ const getRates = async (date, from) => {
     }, 5000);
 
     try {
-        const response = await axios.get(api_url, { cancelToken: source.token });
+        const response = await axios.get(api_url, {
+            cancelToken: source.token,
+        });
         clearTimeout(timeout);
         return response.data;
     } catch (error) {
@@ -122,7 +124,9 @@ const convert = async (date, amount, from) => {
     }, 5000);
 
     try {
-        const response = await axios.get(api_url, { cancelToken: source.token });
+        const response = await axios.get(api_url, {
+            cancelToken: source.token,
+        });
         clearTimeout(timeout);
         return response.data;
     } catch (error) {
@@ -148,7 +152,9 @@ const average = async (startDate, endDate, from) => {
 
         //make req
         try {
-            const response = await axios.get(api_url, { cancelToken: source.token });
+            const response = await axios.get(api_url, {
+                cancelToken: source.token,
+            });
             //console.log(response.data);
             ratesAggregated = sumObjectsByKey(
                 ratesAggregated,
@@ -174,4 +180,6 @@ const average = async (startDate, endDate, from) => {
 };
 
 const port = process.env.PORT || 3000;
-var server = app.listen(3000, "localhost", () => console.log("Server is listening on port " + server.address().port));
+var server = app.listen(3000, "localhost", () =>
+    console.log("Server is listening on port " + server.address().port)
+);
